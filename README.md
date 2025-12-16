@@ -1,4 +1,38 @@
-# PantheonTable
+# 安装 ESLint 及 TypeScript/React 插件
+
+npm install -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-import eslint-config-prettier
+
+# 初始化（可选）
+
+npx eslint --init
+
+# 文件: `./.eslintrc.cjs`
+
+module.exports = {
+root: true,
+parser: '@typescript-eslint/parser',
+parserOptions: {
+ecmaVersion: 2022,
+sourceType: 'module',
+project: ['./tsconfig.app.json', './tsconfig.node.json'],
+},
+env: { browser: true, node: true, es6: true },
+plugins: ['@typescript-eslint', 'react', 'react-hooks', 'import'],
+extends: [
+'eslint:recommended',
+'plugin:react/recommended',
+'plugin:@typescript-eslint/recommended',
+'plugin:react-hooks/recommended',
+'plugin:import/errors',
+'plugin:import/warnings',
+'prettier',
+],
+settings: { react: { version: 'detect' } },
+rules: {
+'react/react-in-jsx-scope': 'off',
+'@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+},
+}# PantheonTable
 
 诸神之桌-游戏世界
 
@@ -32,18 +66,18 @@ export default defineConfig([
       // Alternatively, use this for stricter rules
       tseslint.configs.strictTypeChecked,
       // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+      tseslint.configs.stylisticTypeChecked
 
       // Other configs...
     ],
     languageOptions: {
       parserOptions: {
         project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
+        tsconfigRootDir: import.meta.dirname
+      }
       // other options...
-    },
-  },
+    }
+  }
 ])
 ```
 
@@ -63,15 +97,15 @@ export default defineConfig([
       // Enable lint rules for React
       reactX.configs['recommended-typescript'],
       // Enable lint rules for React DOM
-      reactDom.configs.recommended,
+      reactDom.configs.recommended
     ],
     languageOptions: {
       parserOptions: {
         project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
+        tsconfigRootDir: import.meta.dirname
+      }
       // other options...
-    },
-  },
+    }
+  }
 ])
 ```
